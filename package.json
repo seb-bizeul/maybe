@@ -1,5 +1,5 @@
 {
-  "name": "maybe",
+  "name": "@sbizeul/maybe",
   "version": "1.0.0",
   "description": "Maybe type to use with Flow",
   "main": "lib/maybe.js",
