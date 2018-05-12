@@ -28,7 +28,7 @@ export function chain(fn, maybe) {
 export const flatMap = chain
 
 export function ap(maybe, fn) {
-  return isJust(maybe) && isJust(fn) ? map(fn.value, maybe) : Nothing()
+  return isJust(fn) ? map(fn.value, maybe) : Nothing()
 }
 
 export function get(maybe) {
