@@ -80,6 +80,23 @@ test('getOrElse returns the provided default value', t => {
   t.end()
 })
 
+test('two Nothing are equal', t => {
+  t.ok(Maybe.equals(Maybe.Nothing(), Maybe.Nothing()))
+  t.end()
+})
+
+test('two Just are equal if they share the same value', t => {
+  const x = { a: 5 }
+  const y = { a: 5 }
+  t.ok(Maybe.equals(Maybe.Just(x), Maybe.Just(y)))
+  t.end()
+})
+
+test('Nothing and Just are not equal', t => {
+  t.notOk(Maybe.equals(Maybe.Just(5), Maybe.Nothing()))
+  t.end()
+})
+
 test('isJust returns true if maybe is Just', t => {
   t.deepEqual(Maybe.isJust(Maybe.Just('true')), true)
   t.end()
