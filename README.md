@@ -17,5 +17,9 @@ Maybe type to use with Flow
   const add = x => x * 2
   
   const maybe = Maybe.Just(5)
-  const result = Maybe.map(add, maybe)
+  
+  const result = R.pipe(
+    Maybe.map(add),
+    Maybe.getOrElse(() => 0)
+  )(maybe)
   ````
