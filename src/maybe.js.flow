@@ -30,6 +30,8 @@ declare export function get<T>(maybe: Maybe<T>): T
 
 declare export function getOrElse<T>(fn: () => T, maybe: Maybe<T>): T
 
+declare export function equals<T>(maybe1: Maybe<T>, maybe2: Maybe<T>): boolean
+
 declare export function isJust<T>(maybe: Maybe<T>): boolean
 
 declare export function isNothing<T>(maybe: Maybe<T>): boolean

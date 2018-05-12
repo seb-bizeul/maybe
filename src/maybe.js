@@ -1,5 +1,5 @@
-const JUST = 'Just' 
-const NOTHING = 'Nothing' 
+const JUST = 'Just'
+const NOTHING = 'Nothing'
 
 export function Just(value) {
   return { type: JUST, value }
@@ -43,6 +43,16 @@ export function getOrElse(fn, maybe) {
     return maybe.value
   }
   return fn()
+}
+
+export function equals(maybe1, maybe2) {
+  if (isJust(maybe1) && isJust(maybe2)) {
+    return maybe1.value === maybe2.value
+  }
+  else if (isNothing(maybe1) && isNothing(maybe2)) {
+    return true
+  }
+  return false
 }
 
 export function isJust(maybe) {
