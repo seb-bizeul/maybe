@@ -8,7 +8,7 @@
     "test": "babel-tape-runner __tests__/maybe.test.js"
   },
   "keywords": ["fp", "adt", "monad", "maybe", "flow"],
-  "author": "Seb Bizeul",
+  "author": "sbizeul",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
