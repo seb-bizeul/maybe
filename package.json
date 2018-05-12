@@ -1,0 +1,25 @@
+{
+  "name": "maybe",
+  "version": "1.0.0",
+  "description": "Maybe type to use with Flow",
+  "main": "lib/maybe.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "babel-tape-runner __tests__/maybe.test.js"
+  },
+  "keywords": ["fp", "adt", "monad", "maybe", "flow"],
+  "author": "Seb Bizeul",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-flow": "^6.23.0",
+    "babel-tape-runner": "^2.0.1",
+    "copy-webpack-plugin": "^4.5.1",
+    "flow-bin": "^0.72.0",
+    "tape": "^4.9.0",
+    "webpack": "^4.8.2",
+    "webpack-cli": "^2.1.3"
+  }
+}

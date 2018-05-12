@@ -1,0 +1,35 @@
+// @flow
+export type Maybe<T> = JustT<T> | NothingT
+
+type JustT<T> = {|
+  +value: T,
+  +type: 'Just'
+|}
+
+type NothingT = {|
+  +type: 'Nothing'
+|}
+
+declare export function Just<T>(value: T): Maybe<T>
+
+declare export function Nothing<T>(): Maybe<T>
+
+declare export function of<T>(value: T): Maybe<T>
+
+declare export function fromNullable<T>(value: T): Maybe<T>
+
+declare export function map<T, U>(fn: T => U, maybe: Maybe<T>): Maybe<U>
+
+declare export function chain<T, U>(fn: T => Maybe<U>, maybe: Maybe<T>): Maybe<U>
+
+declare export function flatMap<T, U>(fn: T => Maybe<U>, maybe: Maybe<T>): Maybe<U>
+
+declare export function ap<T, U>(maybe: Maybe<T>, fn: Maybe<T => U>): Maybe<U>
+
+declare export function get<T>(maybe: Maybe<T>): T
+
+declare export function getOrElse<T>(fn: () => T, maybe: Maybe<T>): T
+
+declare export function isJust<T>(maybe: Maybe<T>): boolean
+
+declare export function isNothing<T>(maybe: Maybe<T>): boolean
