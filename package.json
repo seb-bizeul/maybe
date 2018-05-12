@@ -7,7 +7,13 @@
     "build": "webpack",
     "test": "babel-tape-runner __tests__/maybe.test.js"
   },
-  "keywords": ["fp", "adt", "monad", "maybe", "flow"],
+  "keywords": [
+    "fp",
+    "adt",
+    "monad",
+    "maybe",
+    "flow"
+  ],
   "author": "sbizeul",
   "license": "ISC",
   "devDependencies": {
@@ -21,5 +27,8 @@
     "tape": "^4.9.0",
     "webpack": "^4.8.2",
     "webpack-cli": "^2.1.3"
+  },
+  "dependencies": {
+    "fast-deep-equal": "^2.0.1"
   }
 }
