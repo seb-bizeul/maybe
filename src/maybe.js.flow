@@ -1,8 +1,8 @@
 // @flow
-export type Maybe<T> = JustT<T> | NothingT
+export type Maybe<A> = JustT<A> | NothingT
 
-type JustT<T> = {|
-  +value: T,
+type JustT<A> = {|
+  +value: A,
   +type: 'Just'
 |}
 
@@ -10,28 +10,28 @@ type NothingT = {|
   +type: 'Nothing'
 |}
 
-declare export function Just<T>(value: T): Maybe<T>
+declare export function Just<A>(value: A): Maybe<A>
 
-declare export function Nothing<T>(): Maybe<T>
+declare export function Nothing<A>(): Maybe<A>
 
-declare export function of<T>(value: T): Maybe<T>
+declare export function of<A>(value: A): Maybe<A>
 
-declare export function fromNullable<T>(value: T): Maybe<T>
+declare export function fromNullable<A>(value: A): Maybe<A>
 
-declare export function map<T, U>(fn: T => U, maybe: Maybe<T>): Maybe<U>
+declare export function map<A, B>(fn: A => B, maybe: Maybe<A>): Maybe<B>
 
-declare export function chain<T, U>(fn: T => Maybe<U>, maybe: Maybe<T>): Maybe<U>
+declare export function chain<A, B>(fn: A => Maybe<B>, maybe: Maybe<A>): Maybe<B>
 
-declare export function flatMap<T, U>(fn: T => Maybe<U>, maybe: Maybe<T>): Maybe<U>
+declare export function flatMap<A, B>(fn: A => Maybe<B>, maybe: Maybe<A>): Maybe<B>
 
-declare export function ap<T, U>(maybe: Maybe<T>, fn: Maybe<T => U>): Maybe<U>
+declare export function ap<A, B>(maybe: Maybe<A>, fn: Maybe<A => B>): Maybe<B>
 
-declare export function get<T>(maybe: Maybe<T>): T
+declare export function get<A>(maybe: Maybe<A>): A
 
-declare export function getOrElse<T>(fn: () => T, maybe: Maybe<T>): T
+declare export function getOrElse<A>(fn: () => A, maybe: Maybe<A>): A
 
-declare export function equals<T>(maybe1: Maybe<T>, maybe2: Maybe<T>): boolean
+declare export function equals<A>(maybe1: Maybe<A>, maybe2: Maybe<A>): boolean
 
-declare export function isJust<T>(maybe: Maybe<T>): boolean
+declare export function isJust<A>(maybe: Maybe<A>): boolean
 
-declare export function isNothing<T>(maybe: Maybe<T>): boolean
+declare export function isNothing<A>(maybe: Maybe<A>): boolean
