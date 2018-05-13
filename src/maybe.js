@@ -1,4 +1,5 @@
 import deepEqual from 'fast-deep-equal'
+import { curry } from 'ramda'
 
 const JUST = 'Just'
 const NOTHING = 'Nothing'
@@ -19,19 +20,19 @@ export function fromNullable(value) {
   return value != null ? Just(value) : Nothing()
 }
 
-export function map(fn, maybe) {
+export const map = curry((fn, maybe) => {
   return isJust(maybe) ? Just(fn(maybe.value)) : maybe
-}
+})
 
-export function chain(fn, maybe) {
+export const chain = curry((fn, maybe) => {
   return isJust(maybe) ? fn(maybe.value) : maybe
-}
+})
 
 export const flatMap = chain
 
-export function ap(maybe, fn) {
+export const ap = curry((maybe, fn) => {
   return isJust(fn) ? map(fn.value, maybe) : Nothing()
-}
+})
 
 export function get(maybe) {
   if (isJust(maybe)) {
@@ -40,14 +41,14 @@ export function get(maybe) {
   throw new TypeError('Can not extract the value of a Nothing')
 }
 
-export function getOrElse(fn, maybe) {
+export const getOrElse = curry((fn, maybe) => {
   if (isJust(maybe)) {
     return maybe.value
   }
   return fn()
-}
+})
 
-export function equals(maybe1, maybe2) {
+export const equals = curry((maybe1, maybe2) => {
   if (isJust(maybe1) && isJust(maybe2)) {
     return maybe1.value === maybe2.value || deepEqual(maybe1.value, maybe2.value)
   }
@@ -55,7 +56,7 @@ export function equals(maybe1, maybe2) {
     return true
   }
   return false
-}
+})
 
 export function isJust(maybe) {
   return maybe.type === JUST
