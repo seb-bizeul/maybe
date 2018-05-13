@@ -10,28 +10,40 @@ type NothingT = {|
   +type: 'Nothing'
 |}
 
-declare export function Just<A>(value: A): Maybe<A>
+declare export function Just<A>(x: A): Maybe<A>
 
 declare export function Nothing<A>(): Maybe<A>
 
-declare export function of<A>(value: A): Maybe<A>
+declare export function of<A>(x: A): Maybe<A>
 
-declare export function fromNullable<A>(value: A): Maybe<A>
+declare export function fromNullable<A>(x: A): Maybe<A>
 
-declare export function map<A, B>(fn: A => B, maybe: Maybe<A>): Maybe<B>
+declare export var map:
+  & (<A, B>(f: A => B) => (x: Maybe<A>) => Maybe<B>)
+  & (<A, B>(f: A => B, x: Maybe<A>) => Maybe<B>)
 
-declare export function chain<A, B>(fn: A => Maybe<B>, maybe: Maybe<A>): Maybe<B>
+declare export var chain:
+  & (<A, B>(f: A => Maybe<B>) => (x: Maybe<A>) => Maybe<B>)
+  & (<A, B>(f: A => Maybe<B>, x: Maybe<A>) => Maybe<B>)
 
-declare export function flatMap<A, B>(fn: A => Maybe<B>, maybe: Maybe<A>): Maybe<B>
+declare export var flatMap:
+  & (<A, B>(f: A => Maybe<B>) => (x: Maybe<A>) => Maybe<B>)
+  & (<A, B>(f: A => Maybe<B>, x: Maybe<A>) => Maybe<B>)
 
-declare export function ap<A, B>(maybe: Maybe<A>, fn: Maybe<A => B>): Maybe<B>
+declare export var ap:
+  & (<A, B>(x: Maybe<A>) => (f: Maybe<A => B>) => Maybe<B>)
+  & (<A, B>(x: Maybe<A>, f: Maybe<A => B>) => Maybe<B>)
 
-declare export function get<A>(maybe: Maybe<A>): A
+declare export var isJust: <A>(x: Maybe<A>) => boolean
 
-declare export function getOrElse<A>(fn: () => A, maybe: Maybe<A>): A
+declare export var isNothing: <A>(x: Maybe<A>) => boolean
 
-declare export function equals<A>(maybe1: Maybe<A>, maybe2: Maybe<A>): boolean
+declare export var get: <A>(x: Maybe<A>) => A
 
-declare export function isJust<A>(maybe: Maybe<A>): boolean
+declare export var getOrElse:
+  & (<A>(f: void => A) => (x: Maybe<A>) => A)
+  & (<A>(f: void => A, x: Maybe<A>) => A)
 
-declare export function isNothing<A>(maybe: Maybe<A>): boolean
+declare export var equals:
+  & (<A>(x: Maybe<A>) => (y: Maybe<A>) => boolean)
+  & (<A>(x: Maybe<A>, y: Maybe<A>) => boolean)

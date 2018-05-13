@@ -14,7 +14,7 @@ Maybe type to use with Flow
   ````js
   import * as Maybe from '@sbizeul/maybe'
   
-  const add = x => x * 2
+  const add = x => x + x
   
   const maybe = Maybe.Just(5)
   
