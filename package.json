@@ -1,6 +1,6 @@
 {
   "name": "@sbizeul/maybe",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Maybe type to use with Flow",
   "main": "lib/maybe.js",
   "scripts": {
@@ -31,5 +31,9 @@
   "dependencies": {
     "fast-deep-equal": "^2.0.1",
     "ramda": "^0.25.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seb-bizeul/maybe.git"
   }
 }
