@@ -34,6 +34,10 @@ declare export var ap:
   & (<A, B>(x: Maybe<A>) => (f: Maybe<A => B>) => Maybe<B>)
   & (<A, B>(x: Maybe<A>, f: Maybe<A => B>) => Maybe<B>)
 
+declare export var fold:
+  & (<A, B>(n: (() => B), j: (A => B)) => Maybe<A> => B)
+  & (<A, B>(n: (() => B), j: (A => B), Maybe<A>) => B)
+
 declare export var isJust: <A>(x: Maybe<A>) => boolean
 
 declare export var isNothing: <A>(x: Maybe<A>) => boolean

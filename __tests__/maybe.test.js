@@ -60,6 +60,17 @@ test('Maybe type is applicative', t => {
   t.end()
 })
 
+test('Fold right', t => {
+  const value = 17
+  t.equal(Maybe.fold(() => {}, x => x * 2, Maybe.Just(value)), value * 2)
+  t.end()
+})
+
+test('Fold left', t => {
+  t.equal(Maybe.fold(() => 0, () => {}, Maybe.Nothing()), 0)
+  t.end()
+})
+
 test('get unwrapped the value', t => {
   t.deepEqual(Maybe.get(Maybe.Just('unsafe')), 'unsafe')
   t.end()
