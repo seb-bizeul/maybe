@@ -34,6 +34,10 @@ export const ap = curry((maybe, fn) => {
   return isJust(fn) ? map(fn.value, maybe) : Nothing()
 })
 
+export const fold = curry((nothing, just, maybe) => {
+  return isJust(maybe) ? just(maybe.value) : nothing()
+})
+
 export function get(maybe) {
   if (isJust(maybe)) {
     return maybe.value
