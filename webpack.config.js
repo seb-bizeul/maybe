@@ -3,6 +3,14 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const config = {
   entry: './src/maybe.js',
+  target: 'node',
+  output: {
+    path: path.resolve(__dirname, 'lib'),
+    filename: 'maybe.js',
+    library: 'maybe',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
+  },
   module: {
     rules: [
       { test: /\.js$/, use: 'babel-loader' }
@@ -16,32 +24,4 @@ const config = {
   ]
 }
 
-const server = {
-  target: 'node',
-  output: {
-    path: path.resolve(__dirname, 'lib'),
-    filename: 'maybe.node.js',
-    library: 'maybe',
-    libraryTarget: 'umd',
-    umdNamedDefine: true
-  }
-}
-
-const browser = {
-  target: 'web',
-  output: {
-    path: path.resolve(__dirname, 'lib'),
-    filename: 'maybe.js',
-    library: 'maybe',
-    libraryTarget: 'umd',
-    umdNamedDefine: true
-  }
-}
-
-const serverConfig = Object.assign({}, config, server)
-const browserConfig = Object.assign({}, config, browser)
-
-module.exports = [
-  serverConfig,
-  browserConfig
-]
+module.exports = config

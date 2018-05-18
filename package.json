@@ -2,8 +2,7 @@
   "name": "@sbizeul/maybe",
   "version": "1.3.2",
   "description": "Maybe type to use with Flow",
-  "main": "lib/maybe.node.js",
-  "browser": "lib/maybe.js",
+  "main": "lib/maybe.js",
   "scripts": {
     "build": "webpack",
     "test": "babel-tape-runner __tests__/maybe.test.js"
