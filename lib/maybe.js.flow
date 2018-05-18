@@ -1,35 +1,53 @@
 // @flow
-export type Maybe<T> = JustT<T> | NothingT
+export type Maybe<A> = JustT<A> | NothingT
 
-type JustT<T> = {
-  value: T,
-  type: 'Just'
-}
+type JustT<A> = {|
+  +value: A,
+  +type: 'Just'
+|}
 
-type NothingT = {
-  type: 'Nothing'
-}
+type NothingT = {|
+  +type: 'Nothing'
+|}
 
-declare export function Just<T>(value: T): Maybe<T>
+declare export function Just<A>(x: A): Maybe<A>
 
-declare export function Nothing<T>(): Maybe<T>
+declare export function Nothing<A>(): Maybe<A>
 
-declare export function of<T>(value: T): Maybe<T>
+declare export function of<A>(x: A): Maybe<A>
 
-declare export function fromNullable<T>(value: T): Maybe<T>
+declare export function fromNullable<A>(x: A): Maybe<A>
 
-declare export function map<T, U>(fn: T => U, maybe: Maybe<T>): Maybe<U>
+declare export var map:
+  & (<A, B>(f: A => B) => (x: Maybe<A>) => Maybe<B>)
+  & (<A, B>(f: A => B, x: Maybe<A>) => Maybe<B>)
 
-declare export function chain<T, U>(fn: T => Maybe<U>, maybe: Maybe<T>): Maybe<U>
+declare export var chain:
+  & (<A, B>(f: A => Maybe<B>) => (x: Maybe<A>) => Maybe<B>)
+  & (<A, B>(f: A => Maybe<B>, x: Maybe<A>) => Maybe<B>)
 
-declare export function flatMap<T, U>(fn: T => Maybe<U>, maybe: Maybe<T>): Maybe<U>
+declare export var flatMap:
+  & (<A, B>(f: A => Maybe<B>) => (x: Maybe<A>) => Maybe<B>)
+  & (<A, B>(f: A => Maybe<B>, x: Maybe<A>) => Maybe<B>)
 
-declare export function ap<T, U>(maybe: Maybe<T>, fn: Maybe<T => U>): Maybe<U>
+declare export var ap:
+  & (<A, B>(x: Maybe<A>) => (f: Maybe<A => B>) => Maybe<B>)
+  & (<A, B>(x: Maybe<A>, f: Maybe<A => B>) => Maybe<B>)
 
-declare export function get<T>(maybe: Maybe<T>): T
+declare export var fold:
+  & (<A, B>(n: (() => B), j: (A => B)) => Maybe<A> => B)
+  & (<A, B>(n: (() => B), j: (A => B), Maybe<A>) => B)
 
-declare export function getOrElse<T>(fn: () => T, maybe: Maybe<T>): T
+declare export var isJust: <A>(x: Maybe<A>) => boolean
 
-declare export function isJust<T>(maybe: Maybe<T>): boolean
+declare export var isNothing: <A>(x: Maybe<A>) => boolean
 
-declare export function isNothing<T>(maybe: Maybe<T>): boolean
+declare export var get: <A>(x: Maybe<A>) => A
+
+declare export var getOrElse:
+  & (<A>(f: void => A) => (x: Maybe<A>) => A)
+  & (<A>(f: void => A, x: Maybe<A>) => A)
+
+declare export var equals:
+  & (<A>(x: Maybe<A>) => (y: Maybe<A>) => boolean)
+  & (<A>(x: Maybe<A>, y: Maybe<A>) => boolean)
