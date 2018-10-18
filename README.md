@@ -1,5 +1,5 @@
 # Maybe
-Maybe type to use with Flow
+Maybe type to use with Flow [DEPRECATED] use https://github.com/seb-bizeul/fp-flow instead
 
 ## Install
   ```
